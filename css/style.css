@@ -9,6 +9,7 @@ body {
 }
 body.lose {
   background: #981d29;
+  color: white;
 }
 
 button {

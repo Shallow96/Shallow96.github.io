@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #e1e1e1;
+  transition: 1s;
+}
+body.lose {
+  background: #981d29;
+}
+
+button {
+  border-radius: 20px;
+  outline: none !important;
+  padding: 5px;
+}
+
+img {
+  max-width: 100%;
+}
+
+#change_me {
+  position: absolute;
+  top: 70px;
+  left: 400px;
+  font-size: 24px;
+}
+
+.change_color {
+  color: #6f42c1;
+}
+
+.show-img {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.img_wrap {
+  width: 100%;
+  padding: 20px;
+  background: #0f6674;
+  margin-top: 15px;
+  display: none;
+}
+
+.dog {
+  display: none;
+}
+
+.sale-page {
+  margin-top: 40px;
+}
+
+.sun-img {
+  display: flex;
+  align-items: center;
+}
+.sun-img img {
+  width: 100%;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#restart {
+  cursor: pointer;
+}

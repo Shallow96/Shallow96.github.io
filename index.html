@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style></style>
+</head>
+<body>
+<div class="sale-page">
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12 text-center mb-3">Посмотреть скидку</h1>
+        </div>
+        <div class="row">
+            <div class="col sun-img"><img src="images/shirt.png" alt=""></div>
+            <div class="col sun-img"><img src="images/shirt.png" alt=""></div>
+            <div class="col sun-img"><img src="images/shirt.png" alt=""></div>
+            <div class="col sun-img"><img src="images/shirt.png" alt=""></div>
+        </div>
+        <div class="game-result d-flex flex-column">
+            <h2 class="text-center mt-5">Ваш результат <span id="result">0</span></h2>
+            <div id="restart" class="btn btn-dark m-auto d-none">Играть сначала</div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+    $('.sun-img').bind('click', checkForCode)
+    function checkForCode(){
+        let thisTarget = $(this)
+        let defaultImgSrc = thisTarget.find('img').attr('src')
+        console.log(defaultImgSrc)
+        let discount;
+        if($(this).hasClass('endApp')) {
+            $(this).find('img').attr('src','images/pigs.png')
+            $('body').addClass('lose')
+            discount = Math.floor($("#result").text()) + ' Конец'
+            $(".sun-img").each( function(){
+                $(this).unbind('click')
+            })
+            $('.sun-img img').css('box-shadow','none')
+            setTimeout(function () {
+                thisTarget.find('img').attr('src',defaultImgSrc)
+                $('#restart').removeClass('d-none')
+            },2000)
+        }else{
+            $(this).find('img').attr('src','images/red.png')
+            discount = Math.floor($("#result").text()) + 1
+            setTimeout(function () {
+                thisTarget.find('img').attr('src',defaultImgSrc)
+                thisTarget.each(function () {
+                    $('.sun-img').removeClass('endApp')
+                })
+                hideCode()
+            },1000)
+        }
+        $("#result").html(discount)
+    }
+    function hideCode() {
+        let numRandom = getRandom($('.sun-img').length)
+        console.log(numRandom+1)
+        $('.sun-img').each(function (index) {
+            if (numRandom === index){
+                $(this).addClass('endApp')
+            }
+            else {
+            }
+        })
+    }
+    hideCode()
+    $('#restart').bind('click',function () {
+        $('body').removeClass('lose')
+        $("#result").html('0')
+        $(this).addClass('d-none')
+        $('.sun-img').bind('click', checkForCode)
+        hideCode()
+    })
+</script>
+</body>
+</html>

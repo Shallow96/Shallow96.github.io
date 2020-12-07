@@ -7,13 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <style></style>
 </head>
 <body>
 <div class="sale-page">
     <div class="container">
         <div class="row">
-            <h1 class="col-12 text-center mb-3">Избегай свинью</h1>
+            <h1 class="col-12 text-center mb-3">Посмотреть скидку</h1>
         </div>
         <div class="row">
             <div class="col sun-img"><img src="images/shirt.png" alt=""></div>
@@ -47,17 +46,20 @@
             $('.sun-img img').css('box-shadow','none')
             setTimeout(function () {
                 thisTarget.find('img').attr('src',defaultImgSrc)
-                $('#restart').removeClass('d-none')
-            },2000)
+
+            },1000)
+            $('#restart').removeClass('d-none')
         }else{
             $(this).find('img').attr('src','images/red.png')
             discount = Math.floor($("#result").text()) + 1
+            $('.sun-img').unbind('click')
             setTimeout(function () {
                 thisTarget.find('img').attr('src',defaultImgSrc)
                 thisTarget.each(function () {
                     $('.sun-img').removeClass('endApp')
                 })
                 hideCode()
+                $('.sun-img').bind('click',checkForCode)
             },1000)
         }
         $("#result").html(discount)
@@ -68,8 +70,12 @@
         $('.sun-img').each(function (index) {
             if (numRandom === index){
                 $(this).addClass('endApp')
+                $(this).find('img').css('border-radius','40px')
+                // $(this).find('img').css('box-shadow','0 0 15px 0 black')
             }
             else {
+                $(this).find('img').css('border-radius','0')
+                // $(this).find('img').css('box-shadow','none')
             }
         })
     }
